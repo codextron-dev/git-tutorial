@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Tutorial — From Zero to Push</title>
+  <meta name="description"
+    content="A clean, step-by-step guide to installing Git, configuring it, and pushing your first project to GitHub.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="loading-bar" id="loadingBar" aria-hidden="true"></div>
+
+  <!-- Progress rail -->
+  <nav class="rail" aria-label="Tutorial progress">
+    <div class="rail-track">
+      <div class="rail-fill" id="railFill"></div>
+    </div>
+    <ol class="rail-dots" id="railDots"></ol>
+  </nav>
+
+  <header class="topbar load-in" style="--d: 0s">
+    <div class="topbar-inner">
+      <a href="#top" class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 L2 12 L12 22 L22 12 Z" opacity="0" />
+          <circle cx="6" cy="12" r="2.2" />
+          <circle cx="14" cy="6" r="2.2" />
+          <circle cx="14" cy="18" r="2.2" />
+          <path d="M8.2 12 H12" />
+          <path d="M14 8.2 V15.8" />
+        </svg>
+        <span>git<em>tutorial</em></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle steps menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow load-in" style="--d: 0.1s">A local project → GitHub, start to finish</p>
+        <h1 class="load-in" style="--d: 0.18s">Learn Git by<br>typing it once.</h1>
+        <p class="hero-sub load-in" style="--d: 0.28s">Nine commands stand between a folder on your machine and a
+          repository on GitHub. This guide walks you through every one — download, configure, commit, push.</p>
+        <a href="#step-01" class="btn btn-primary load-in" style="--d: 0.36s">
+          <span>Start the tutorial</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="terminal hero-terminal load-in" style="--d: 0.22s" aria-hidden="true">
+        <div class="terminal-bar">
+          <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+          <span class="terminal-title">bash — my-project</span>
+        </div>
+        <div class="terminal-body" id="heroTyping"></div>
+      </div>
+    </section>
+
+    <!-- STEPS -->
+    <section class="steps">
+
+      <!-- STEP 01 — Download -->
+      <article class="step" id="step-01" data-step="1">
+        <div class="step-head">
+          <span class="step-num">01</span>
+          <div>
+            <p class="step-kicker">Get the software</p>
+            <h2>Download Git</h2>
+            <p class="step-desc">Git is free and open source. Pick your operating system on the official page and
+              download it.</p>
+          </div>
+        </div>
+
+        <a class="link-out link-out-lg" href="https://git-scm.com/install" target="_blank" rel="noopener">
+          git-scm.com/install
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M7 17 17 7M8 7h9v9" />
+          </svg>
+        </a>
+      </article>
+
+      <!-- STEP 02 — Install -->
+      <article class="step" id="step-02" data-step="2">
+        <div class="step-head">
+          <span class="step-num">02</span>
+          <div>
+            <p class="step-kicker">Run the installer</p>
+            <h2>Install Git</h2>
+            <p class="step-desc">The setup wizard has a lot of screens. The defaults are fine for almost everyone.</p>
+          </div>
+        </div>
+
+        <div class="checklist checklist-compact">
+          <div class="checklist-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+            <div><strong>Windows</strong>
+              <p>Run the <code>.exe</code> and keep the default options.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+            <div><strong>macOS</strong>
+              <p>Run the <code>.pkg</code>, or skip this — Homebrew already installed it.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m9 12 2 2 4-4" />
+            </svg>
+            <div><strong>Linux</strong>
+              <p>Already installed by your package manager.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" data-copy-text="git --version">
+          <div class="code-head">
+            <span>Verify — open a fresh terminal and run</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git --version</code></pre>
+        </div>
+      </article>
+
+      <!-- STEP 03 — Configure -->
+      <article class="step" id="step-03" data-step="3">
+        <div class="step-head">
+          <span class="step-num">03</span>
+          <div>
+            <p class="step-kicker">One-time setup</p>
+            <h2>Configure your identity</h2>
+            <p class="step-desc">Git stamps every commit with a name and email. Set them globally so you only do this
+              once per machine.</p>
+          </div>
+        </div>
+
+        <div class="code-block" data-copy-text='git config --global user.name "Your Name"'>
+          <div class="code-head">
+            <span>Set your name</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git config --global user.name "Your Name"</code></pre>
+        </div>
+
+        <div class="code-block" data-copy-text='git config --global user.email "you@example.com"'>
+          <div class="code-head">
+            <span>Set your email</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git config --global user.email "you@example.com"</code></pre>
+        </div>
+
+        <p class="note">Use the same email address as your GitHub account so your commits are linked to your profile.
+          Swap in your real name and email before running these.</p>
+      </article>
+
+      <!-- STEP 04 — Repo + Git Bash -->
+      <article class="step" id="step-04" data-step="4">
+        <div class="step-head">
+          <span class="step-num">04</span>
+          <div>
+            <p class="step-kicker">Set the stage</p>
+            <h2>Create a repository & open the terminal</h2>
+            <p class="step-desc">You need an empty repository on GitHub, and a terminal open inside your project folder
+              on your machine.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="mini-card">
+            <svg class="mini-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2.16c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" />
+            </svg>
+            <h3>On GitHub</h3>
+            <ol>
+              <li>Click the <strong>+</strong> icon in the top right, then <strong>New repository</strong>.</li>
+              <li>Give it a name and leave it <strong>public</strong> or <strong>private</strong>, your choice.</li>
+              <li>Don't add a README, .gitignore, or license — leave the repo completely empty.</li>
+              <li>Click <strong>Create repository</strong> and keep the page open; you'll need the URL it shows you.
+              </li>
+            </ol>
+          </div>
+          <div class="mini-card">
+            <svg class="mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="m7 9 3 3-3 3M13 15h4" />
+            </svg>
+            <h3>On your machine</h3>
+            <ol>
+              <li><strong>Windows</strong> — open your project folder, right-click inside it, and choose <strong>"Git
+                  Bash Here."</strong></li>
+              <li><strong>macOS / Linux</strong> — open Terminal and run <code>cd</code> into the project folder.</li>
+              <li>Confirm you're in the right place by running <code>pwd</code>.</li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 05 — add -->
+      <article class="step" id="step-05" data-step="5">
+        <div class="step-head">
+          <span class="step-num">05</span>
+          <div>
+            <p class="step-kicker">Track your files</p>
+            <h2>Initialize and stage</h2>
+            <p class="step-desc">Turn the folder into a Git repository, then stage every file so it's ready to be
+              committed.</p>
+          </div>
+        </div>
+
+        <div class="code-block" data-copy-text="git init">
+          <div class="code-head">
+            <span>Initialize the repository</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git init</code></pre>
+        </div>
+
+        <div class="code-block" data-copy-text="git add .">
+          <div class="code-head">
+            <span>Stage every file</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git add .</code></pre>
+        </div>
+        <p class="note">The dot means "everything in this folder." Files listed in a <code>.gitignore</code> are skipped
+          automatically.</p>
+      </article>
+
+      <!-- STEP 06 — commit -->
+      <article class="step" id="step-06" data-step="6">
+        <div class="step-head">
+          <span class="step-num">06</span>
+          <div>
+            <p class="step-kicker">Save a snapshot</p>
+            <h2>Commit your changes</h2>
+            <p class="step-desc">A commit is a saved checkpoint with a message describing what changed.</p>
+          </div>
+        </div>
+
+        <div class="code-block" data-copy-text='git commit -m "Initial Commit"'>
+          <div class="code-head">
+            <span>Commit staged files</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git commit -m "Initial Commit"</code></pre>
+        </div>
+        <p class="note">Keep messages short and in the present tense — you can write more detail in the body for later
+          commits.</p>
+      </article>
+
+      <!-- STEP 07 — branch -->
+      <article class="step" id="step-07" data-step="7">
+        <div class="step-head">
+          <span class="step-num">07</span>
+          <div>
+            <p class="step-kicker">Name your branch</p>
+            <h2>Rename to main</h2>
+            <p class="step-desc">Older versions of Git default to a branch called <code>master</code>. Rename it to
+              <code>main</code> to match GitHub's convention.</p>
+          </div>
+        </div>
+
+        <div class="code-block" data-copy-text="git branch -M main">
+          <div class="code-head">
+            <span>Rename the current branch</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git branch -M main</code></pre>
+        </div>
+      </article>
+
+      <!-- STEP 08 — remote -->
+      <article class="step" id="step-08" data-step="8">
+        <div class="step-head">
+          <span class="step-num">08</span>
+          <div>
+            <p class="step-kicker">Point to GitHub</p>
+            <h2>Add the remote</h2>
+            <p class="step-desc">Link your local repository to the empty one you created on GitHub.</p>
+          </div>
+        </div>
+
+        <div class="builder">
+          <label class="builder-label" for="repoUrl">Paste the repository URL from GitHub</label>
+          <div class="builder-input-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.2 1.1" />
+              <path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1" />
+            </svg>
+            <input type="text" id="repoUrl" placeholder="https://github.com/username/repo.git" autocomplete="off"
+              spellcheck="false">
+          </div>
+        </div>
+
+        <div class="code-block" data-copy-text="git remote add origin https://github.com/username/repo.git"
+          id="remoteBlock">
+          <div class="code-head">
+            <span>Add the remote named "origin"</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code id="remoteCode">git remote add origin <span class="placeholder-text">https://github.com/username/repo.git</span></code></pre>
+        </div>
+        <p class="note">Find this URL on your new repo's page under <strong>"…or push an existing repository from the
+            command line."</strong></p>
+      </article>
+
+      <!-- STEP 09 — push -->
+      <article class="step" id="step-09" data-step="9">
+        <div class="step-head">
+          <span class="step-num">09</span>
+          <div>
+            <p class="step-kicker">Ship it</p>
+            <h2>Push to GitHub</h2>
+            <p class="step-desc">Upload your commit and set <code>origin</code> as the default remote for this branch.
+            </p>
+          </div>
+        </div>
+
+        <div class="code-block" data-copy-text="git push -u origin main">
+          <div class="code-head">
+            <span>Push and set upstream</span>
+            <button class="copy-btn" type="button" aria-label="Copy command">
+              <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
+          <pre><code>git push -u origin main</code></pre>
+        </div>
+        <p class="note">Git may open a browser window to sign in the first time. After that, <code>-u</code> means
+          future pushes only need <code>git push</code>.</p>
+      </article>
+
+    </section>
+
+    <!-- RECAP -->
+    <section class="recap">
+      <div class="recap-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="m8 12 3 3 5-6" />
+        </svg>
+        <div>
+          <h2>The full sequence</h2>
+          <p>Every command from this guide, in order, ready to paste into your terminal.</p>
+        </div>
+      </div>
+      <div class="code-block recap-block" data-copy-text='git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git init
+git add .
+git commit -m "Initial Commit"
+git branch -M main
+git remote add origin https://github.com/username/repo.git
+git push -u origin main'>
+        <div class="code-head">
+          <span>full-setup.sh</span>
+          <button class="copy-btn" type="button" aria-label="Copy all commands">
+            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="12" height="12" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </button>
+        </div>
+        <pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git init
+git add .
+git commit -m "Initial Commit"
+git branch -M main
+git remote add origin https://github.com/username/repo.git
+git push -u origin main</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
